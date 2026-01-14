@@ -29,7 +29,7 @@ public sealed class JwtServices:IJwtServices
             new("IsActive", user.IsActive.ToString())
         };
 
-        // Solo el rol importa - determina todo lo que el usuario puede hacer
+        // Solo el rol importa - determina 
         if (user.Role is not null)
         {
             claims.Add(new Claim(ClaimTypes.Role, user.Role.Name));
