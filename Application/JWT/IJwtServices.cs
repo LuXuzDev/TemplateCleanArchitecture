@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Http;
 
-namespace Application.Auth;
+namespace Application.JWT;
 
 public interface IJwtServices
 {

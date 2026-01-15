@@ -6,7 +6,7 @@ using Microsoft.IdentityModel.Tokens;
 
 namespace Application.JWT;
 
-public sealed class JwtServices:IJwtServices 
+public sealed class JwtServices(JwtSettings jwtSettings, byte[] secretKey) : IJwtServices
 {
     private readonly JwtSettings _jwtSettings;
     private readonly byte[] _secretKey;
