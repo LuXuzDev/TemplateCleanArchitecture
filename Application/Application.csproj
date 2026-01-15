@@ -17,6 +17,10 @@
   <ItemGroup>
     <Folder Include="RefreshToken\Queries\" />
   </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Domain\Domain.csproj" />
+  </ItemGroup>
     
 
 </Project>

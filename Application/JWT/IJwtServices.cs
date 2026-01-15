@@ -1,4 +1,5 @@
 using Application.Auth;
+using Domain.Modules.Users.Models;
 using Microsoft.AspNetCore.Http;
 
 namespace Application.JWT;

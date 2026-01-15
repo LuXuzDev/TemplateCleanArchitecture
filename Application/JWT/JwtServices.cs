@@ -1,6 +1,7 @@
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using Application.Auth;
+using Domain.Modules.Users.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.IdentityModel.Tokens;
 
