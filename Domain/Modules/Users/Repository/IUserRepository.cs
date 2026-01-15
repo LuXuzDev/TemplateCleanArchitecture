@@ -1,5 +1,8 @@
-﻿namespace Domain.Modules.Users.Repository;
+﻿using Domain.Modules.Users.Models;
+using Domain.Shared;
 
-public interface IUserRepository
+namespace Domain.Modules.Users.Repository;
+
+public interface IUserRepository : IRepositoryGeneric<User>
 {
 }

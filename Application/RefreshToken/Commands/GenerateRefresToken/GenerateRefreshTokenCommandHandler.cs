@@ -3,7 +3,7 @@ using System.Text;
 using Application.Auth;
 using FastEndpoints;
 
-namespace Application.RefreshToken.Commands;
+namespace Application.RefreshToken.Commands.GenerateRefresToken;
 
 public class GenerateRefreshTokenCommandHandler : ICommandHandler<GenerateRefreshTokenCommand, string>
 {

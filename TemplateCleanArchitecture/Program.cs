@@ -1,9 +1,10 @@
-using Api;
 using Api.DependencyInjection;
-using Shared.Exception;
+using Api.Middlewares;
+using LuxuzDev.PersonalLogger;
 
 var builder = WebApplication.CreateBuilder(args);
 
+PersonalLogger.Initialize();
 
 builder.Services
     .AddApplicationServices(builder.Configuration)
@@ -19,9 +20,9 @@ if (app.Environment.IsDevelopment())
     app.MapOpenApi();
 }
 
-app.UseMiddleware<CustomMiddleware>();
+app.UseMiddleware<ExceptionMiddleware>();
 app.UseHttpsRedirection();
 
 
+PersonalLogger.Log("PersonalLogger Iniciado", LogType.Success);
 app.Run();
-

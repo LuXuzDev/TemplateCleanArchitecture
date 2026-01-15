@@ -1,4 +1,5 @@
 ﻿using Domain.Modules.Users.Repository;
+using Domain.Shared;
 using Infrastructure;
 using Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
@@ -20,10 +21,11 @@ public static class InfrastructureServices
 
         #region Repositories
 
+        services.AddScoped(typeof(IRepositoryGeneric<>), typeof(RepositoryGeneric<>));
         services.AddScoped<IUserRepository, UserRepository>();
 
         #endregion
-        
+
 
         return services;
     }

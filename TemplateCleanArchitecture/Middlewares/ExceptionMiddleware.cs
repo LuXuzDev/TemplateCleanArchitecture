@@ -1,13 +1,12 @@
-using System.Net;
 using Domain.Exceptions;
 
-namespace Api;
+namespace Api.Middlewares;
 
-public class CustomMiddleware
+public class ExceptionMiddleware
 {
     private readonly RequestDelegate _next;
 
-    public CustomMiddleware(RequestDelegate next)
+    public ExceptionMiddleware(RequestDelegate next)
     {
         _next = next;
     }
@@ -40,7 +39,8 @@ public class CustomMiddleware
                 status = statusCode,
                 code = apiException.ExceptionCode.ToString(),
                 message = apiException.ErrorMessage,
-                details = apiException.ErrorDetails
+                details = apiException.ErrorDetails,
+                date = DateTime.UtcNow.ToString()
             };
         }
         else
@@ -52,7 +52,8 @@ public class CustomMiddleware
                 status = statusCode,
                 code = "UNEXPECTED_ERROR",
                 message = "Ocurrió un error inesperado",
-                details = exception.Message
+                details = exception.Message,
+                date = DateTime.UtcNow.ToString()
             };
         }
         context.Response.StatusCode = statusCode;
