@@ -1,4 +1,6 @@
+using Api;
 using Api.DependencyInjection;
+using Shared.Exception;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,7 +19,7 @@ if (app.Environment.IsDevelopment())
     app.MapOpenApi();
 }
 
-
+app.UseMiddleware<CustomMiddleware>();
 app.UseHttpsRedirection();
 
 
