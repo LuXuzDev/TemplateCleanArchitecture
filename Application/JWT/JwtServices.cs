@@ -8,15 +8,6 @@ namespace Application.JWT;
 
 public sealed class JwtServices(JwtSettings jwtSettings, byte[] secretKey) : IJwtServices
 {
-    private readonly JwtSettings _jwtSettings;
-    private readonly byte[] _secretKey;
-    
-    public JwtServices(JwtSettings jwtSettings, byte[] secretKey)
-    {
-        _jwtSettings = jwtSettings;
-        _secretKey = secretKey;
-    }
-    
     public string GenerateToken(User user)
     {
         var tokenHandler = new JwtSecurityTokenHandler();
@@ -38,11 +29,11 @@ public sealed class JwtServices(JwtSettings jwtSettings, byte[] secretKey) : IJw
         var tokenDescriptor = new SecurityTokenDescriptor
         {
             Subject = new ClaimsIdentity(claims),
-            Expires = DateTime.UtcNow.AddDays(_jwtSettings.ExpirationInMinutes),
-            Issuer = _jwtSettings.Issuer,
-            Audience = _jwtSettings.Audience,
+            Expires = DateTime.UtcNow.AddMinutes(jwtSettings.ExpirationInMinutes),
+            Issuer = jwtSettings.Issuer,
+            Audience = jwtSettings.Audience,
             SigningCredentials = new SigningCredentials(
-                new SymmetricSecurityKey(_secretKey),
+                new SymmetricSecurityKey(secretKey),
                 SecurityAlgorithms.HmacSha256Signature)
         };
 
@@ -61,9 +52,9 @@ public sealed class JwtServices(JwtSettings jwtSettings, byte[] secretKey) : IJw
                 ValidateIssuerSigningKey = true,
                 ValidateIssuer = true,
                 ValidateAudience = true,
-                ValidIssuer = _jwtSettings.Issuer,
-                ValidAudience = _jwtSettings.Audience,
-                IssuerSigningKey = new SymmetricSecurityKey(_secretKey)
+                ValidIssuer = jwtSettings.Issuer,
+                ValidAudience = jwtSettings.Audience,
+                IssuerSigningKey = new SymmetricSecurityKey(secretKey)
             };
             var principal = tokenHandler.ValidateToken(token, validationParameters, out _);
             return principal;

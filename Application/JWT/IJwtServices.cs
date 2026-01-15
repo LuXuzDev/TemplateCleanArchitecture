@@ -1,3 +1,4 @@
+using Application.Auth;
 using Microsoft.AspNetCore.Http;
 
 namespace Application.JWT;
